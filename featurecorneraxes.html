@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 4 FeatureCornerAxes | The documentation of scRNAtoolVis package</title>
+<meta name="author" content="Junjun Lao">
+<meta name="description" content="FeatureCornerAxes is used to add corner axis on the left-bottom UMAP/tSNE Featureplot function from seurat plot to view gene expressions.  4.1 examples See the default plot: # default...">
+<meta name="generator" content="bookdown 0.27.2 with bs4_book()">
+<meta property="og:title" content="Chapter 4 FeatureCornerAxes | The documentation of scRNAtoolVis package">
+<meta property="og:type" content="book">
+<meta property="og:description" content="FeatureCornerAxes is used to add corner axis on the left-bottom UMAP/tSNE Featureplot function from seurat plot to view gene expressions.  4.1 examples See the default plot: # default...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 4 FeatureCornerAxes | The documentation of scRNAtoolVis package">
+<meta name="twitter:description" content="FeatureCornerAxes is used to add corner axis on the left-bottom UMAP/tSNE Featureplot function from seurat plot to view gene expressions.  4.1 examples See the default plot: # default...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">The documentation of scRNAtoolVis package</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About Lao Junjun</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Introduction</a></li>
+<li><a class="" href="clustercorneraxes.html"><span class="header-section-number">3</span> clusterCornerAxes</a></li>
+<li><a class="active" href="featurecorneraxes.html"><span class="header-section-number">4</span> FeatureCornerAxes</a></li>
+<li><a class="" href="averageheatmap.html"><span class="header-section-number">5</span> AverageHeatmap</a></li>
+<li><a class="" href="markervocalno.html"><span class="header-section-number">6</span> markerVocalno</a></li>
+<li><a class="" href="jjdotplot.html"><span class="header-section-number">7</span> jjDotPlot</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="featurecorneraxes" class="section level1" number="4">
+<h1>
+<span class="header-section-number">4</span> FeatureCornerAxes<a class="anchor" aria-label="anchor" href="#featurecorneraxes"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>FeatureCornerAxes</strong> is used to add corner axis on the left-bottom UMAP/tSNE Featureplot function from seurat plot to view gene expressions.</p>
+<div id="examples-1" class="section level2" number="4.1">
+<h2>
+<span class="header-section-number">4.1</span> examples<a class="anchor" aria-label="anchor" href="#examples-1"><i class="fas fa-link"></i></a>
+</h2>
+<p>See the default plot:</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># default</span>
+<span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                  groupFacet <span class="op">=</span> <span class="st">'orig.ident'</span>,
+                  relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                  relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure">
+<img src="local_images/13.png" style="width:100.0%">
+Remove legend:</div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># remove legend</span>
+<span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                  groupFacet <span class="op">=</span> <span class="st">'orig.ident'</span>,
+                  relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                  relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span>,
+                  show.legend <span class="op">=</span> <span class="cn">F</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="local_images/14.png" style="width:100.0%"></div>
+<p>If we do not split the plot by group, we can set groupFacet = NULL:</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># no facet group</span>
+<span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                  groupFacet <span class="op">=</span> <span class="cn">NULL</span>,
+                  relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                  relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                  features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span>,
+                  aspect.ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure">
+<img src="local_images/15.png" style="width:100.0%">
+We can specify a group to change the corner axis position:</div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># specify corner position</span>
+<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                        groupFacet <span class="op">=</span> <span class="st">'orig.ident'</span>,
+                        relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                        relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                        aspect.ratio <span class="op">=</span> <span class="fl">1</span>,
+                        features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span>,
+                        axes <span class="op">=</span> <span class="st">'one'</span><span class="op">)</span>
+
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                        groupFacet <span class="op">=</span> <span class="st">'orig.ident'</span>,
+                        relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                        relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                        aspect.ratio <span class="op">=</span> <span class="fl">1</span>,
+                        features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span>,
+                        axes <span class="op">=</span> <span class="st">'one'</span>,
+                        cornerVariable <span class="op">=</span> <span class="st">'ST4'</span><span class="op">)</span>
+
+<span class="co"># combine</span>
+<span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span>,ncol <span class="op">=</span> <span class="fl">2</span>,align <span class="op">=</span> <span class="st">'hv'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="local_images/16.png" style="width:100.0%"></div>
+<p>Besides, we can set the color bar value range:</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># given a range to plot</span>
+<span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                        groupFacet <span class="op">=</span> <span class="cn">NULL</span>,
+                        relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                        relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                        features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span>,
+                        aspect.ratio <span class="op">=</span> <span class="fl">1</span>,
+                        themebg <span class="op">=</span> <span class="st">'bwCorner'</span><span class="op">)</span>
+
+<span class="va">p2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/FeatureCornerAxes.html">FeatureCornerAxes</a></span><span class="op">(</span>object <span class="op">=</span> <span class="va">tmp</span>,reduction <span class="op">=</span> <span class="st">'umap'</span>,
+                        groupFacet <span class="op">=</span> <span class="cn">NULL</span>,
+                        relLength <span class="op">=</span> <span class="fl">0.5</span>,
+                        relDist <span class="op">=</span> <span class="fl">0.2</span>,
+                        features <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Actb"</span>,<span class="st">"Ythdc1"</span>, <span class="st">"Ythdf2"</span><span class="op">)</span>,
+                        aspect.ratio <span class="op">=</span> <span class="fl">1</span>,
+                        themebg <span class="op">=</span> <span class="st">'bwCorner'</span>,
+                        minExp <span class="op">=</span> <span class="fl">0</span>,maxExp <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># combine</span>
+<span class="fu">cowplot</span><span class="fu">::</span><span class="fu"><a href="https://wilkelab.org/cowplot/reference/plot_grid.html">plot_grid</a></span><span class="op">(</span><span class="va">p1</span>,<span class="va">p2</span>,ncol <span class="op">=</span> <span class="fl">1</span>,align <span class="op">=</span> <span class="st">'hv'</span><span class="op">)</span></code></pre></div>
+<div class="inline-figure"><img src="local_images/17.png" style="width:100.0%"></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="clustercorneraxes.html"><span class="header-section-number">3</span> clusterCornerAxes</a></div>
+<div class="next"><a href="averageheatmap.html"><span class="header-section-number">5</span> AverageHeatmap</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#featurecorneraxes"><span class="header-section-number">4</span> FeatureCornerAxes</a></li>
+<li><a class="nav-link" href="#examples-1"><span class="header-section-number">4.1</span> examples</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>The documentation of scRNAtoolVis package</strong>" was written by Junjun Lao. It was last built on 2022-08-24.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
