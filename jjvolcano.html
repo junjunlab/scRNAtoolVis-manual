@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Chapter 8 jjVolcano | The documentation of scRNAtoolVis package</title>
+<meta name="author" content="Junjun Lao">
+<meta name="description" content="jjVolcano function can be used to visualize marker genes in multiple clusters.  8.1 Basic examples Load test data: library(scRNAtoolVis) # test data('pbmc.markers') # check head(pbmc.markers,3) # ...">
+<meta name="generator" content="bookdown 0.28 with bs4_book()">
+<meta property="og:title" content="Chapter 8 jjVolcano | The documentation of scRNAtoolVis package">
+<meta property="og:type" content="book">
+<meta property="og:description" content="jjVolcano function can be used to visualize marker genes in multiple clusters.  8.1 Basic examples Load test data: library(scRNAtoolVis) # test data('pbmc.markers') # check head(pbmc.markers,3) # ...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chapter 8 jjVolcano | The documentation of scRNAtoolVis package">
+<meta name="twitter:description" content="jjVolcano function can be used to visualize marker genes in multiple clusters.  8.1 Basic examples Load test data: library(scRNAtoolVis) # test data('pbmc.markers') # check head(pbmc.markers,3) # ...">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.4.0/transition.js"></script><script src="libs/bs3compat-0.4.0/tabs.js"></script><script src="libs/bs3compat-0.4.0/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">The documentation of scRNAtoolVis package</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html"><span class="header-section-number">1</span> About Lao Junjun</a></li>
+<li><a class="" href="intro.html"><span class="header-section-number">2</span> Introduction</a></li>
+<li><a class="" href="clustercorneraxes.html"><span class="header-section-number">3</span> clusterCornerAxes</a></li>
+<li><a class="" href="featurecorneraxes.html"><span class="header-section-number">4</span> FeatureCornerAxes</a></li>
+<li><a class="" href="averageheatmap.html"><span class="header-section-number">5</span> AverageHeatmap</a></li>
+<li><a class="" href="markervocalno.html"><span class="header-section-number">6</span> markerVocalno</a></li>
+<li><a class="" href="jjdotplot.html"><span class="header-section-number">7</span> jjDotPlot</a></li>
+<li><a class="active" href="jjvolcano.html"><span class="header-section-number">8</span> jjVolcano</a></li>
+</ul>
+
+        <div class="book-extra">
+          
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="jjvolcano" class="section level1" number="8">
+<h1>
+<span class="header-section-number">8</span> jjVolcano<a class="anchor" aria-label="anchor" href="#jjvolcano"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>jjVolcano</strong> function can be used to visualize marker genes in multiple clusters.</p>
+<div id="basic-examples" class="section level2" number="8.1">
+<h2>
+<span class="header-section-number">8.1</span> Basic examples<a class="anchor" aria-label="anchor" href="#basic-examples"><i class="fas fa-link"></i></a>
+</h2>
+<p>Load test data:</p>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">scRNAtoolVis</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># test</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">'pbmc.markers'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># check</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">pbmc.markers</span>,<span class="fl">3</span><span class="op">)</span></span>
+<span><span class="co">#               p_val avg_log2FC pct.1 pct.2     p_val_adj     cluster  gene</span></span>
+<span><span class="co"># RPS12 2.008629e-140  0.7256738 1.000 0.991 2.754633e-136 Naive CD4 T RPS12</span></span>
+<span><span class="co"># RPS27 2.624075e-140  0.7242847 0.999 0.992 3.598656e-136 Naive CD4 T RPS27</span></span>
+<span><span class="co"># RPS6  1.280169e-138  0.6742630 1.000 0.995 1.755623e-134 Naive CD4 T  RPS6</span></span></code></pre></div>
+<p>plot:</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/46.png" style="width:100.0%"></div>
+<p>Ajust<code>log2FC.cutoff</code>,<code>col.type</code>and<code>topGeneN</code>:</p>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># change aes color type</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          log2FC.cutoff <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>          col.type <span class="op">=</span> <span class="st">"adjustP"</span>,</span>
+<span>          topGeneN <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/47.png" style="width:100.0%"></div>
+<p>Supply with own genes:</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># supply own genes</span></span>
+<span><span class="va">mygene</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'LTB'</span>,<span class="st">'CD79B'</span>,<span class="st">'CCR7'</span>,<span class="st">'GNLY'</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          myMarkers <span class="op">=</span> <span class="va">mygene</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/48.png" style="width:100.0%"></div>
+<p>Change point color:</p>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># change point color</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          aesCol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'purple'</span>,<span class="st">'orange'</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/49.png" style="width:100.0%"></div>
+<p>Change rect fill color:</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># change cluster rect color</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          tile.col <span class="op">=</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/COL2.html">COL2</a></span><span class="op">(</span><span class="st">'RdBu'</span>, <span class="fl">15</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/50.png" style="width:100.0%"></div>
+<p>Other about gene text aruments can be passed by <strong>geom_text_repel</strong>:</p>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># cluster label arguments passed to geom_text_repel</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          tile.col <span class="op">=</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/COL2.html">COL2</a></span><span class="op">(</span><span class="st">'RdBu'</span>, <span class="fl">15</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span>,</span>
+<span>          size  <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>          fontface <span class="op">=</span> <span class="st">'italic'</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/51.png" style="width:100.0%"></div>
+<p>Ajust cluster orders by <strong>cluster.order</strong>:</p>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># ajust cluster orders</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          tile.col <span class="op">=</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/COL2.html">COL2</a></span><span class="op">(</span><span class="st">'PuOr'</span>, <span class="fl">15</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span>,</span>
+<span>          size  <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>          fontface <span class="op">=</span> <span class="st">'italic'</span>,</span>
+<span>          cluster.order <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">pbmc.markers</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/52.png" style="width:100.0%"></div>
+</div>
+<div id="layout" class="section level2" number="8.2">
+<h2>
+<span class="header-section-number">8.2</span> Layout<a class="anchor" aria-label="anchor" href="#layout"><i class="fas fa-link"></i></a>
+</h2>
+<p><strong>flip = T</strong> to rotate the plot:</p>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># flip the plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          tile.col <span class="op">=</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/COL2.html">COL2</a></span><span class="op">(</span><span class="st">'PiYG'</span>, <span class="fl">15</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span>,</span>
+<span>          size  <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>          fontface <span class="op">=</span> <span class="st">'italic'</span>,</span>
+<span>          legend.position <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.8</span>,<span class="fl">0.2</span><span class="op">)</span>,</span>
+<span>          flip <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/53.png" style="width:100.0%"></div>
+<p><strong>polar = T</strong> to draw a polar plot:</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># make a polar plot</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          tile.col <span class="op">=</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/COL2.html">COL2</a></span><span class="op">(</span><span class="st">'RdBu'</span>, <span class="fl">15</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span>,</span>
+<span>          size  <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>          fontface <span class="op">=</span> <span class="st">'italic'</span>,</span>
+<span>          polar <span class="op">=</span> <span class="cn">T</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/54.png" style="width:100.0%"></div>
+<p>Expand the limits:</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># expand limits</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/scRNAtoolVis/man/jjVolcano.html">jjVolcano</a></span><span class="op">(</span>diffData <span class="op">=</span> <span class="va">pbmc.markers</span>,</span>
+<span>          tile.col <span class="op">=</span> <span class="fu">corrplot</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/corrplot/man/COL2.html">COL2</a></span><span class="op">(</span><span class="st">'RdYlBu'</span>, <span class="fl">15</span><span class="op">)</span><span class="op">[</span><span class="fl">4</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span>,</span>
+<span>          size  <span class="op">=</span> <span class="fl">3.5</span>,</span>
+<span>          fontface <span class="op">=</span> <span class="st">'italic'</span>,</span>
+<span>          polar <span class="op">=</span> <span class="cn">T</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">ylim</span><span class="op">(</span><span class="op">-</span><span class="fl">8</span>,<span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<div class="inline-figure"><img src="local_images/55.png" style="width:100.0%"></div>
+
+</div>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="jjdotplot.html"><span class="header-section-number">7</span> jjDotPlot</a></div>
+<div class="empty"></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav">
+<li><a class="nav-link" href="#jjvolcano"><span class="header-section-number">8</span> jjVolcano</a></li>
+<li><a class="nav-link" href="#basic-examples"><span class="header-section-number">8.1</span> Basic examples</a></li>
+<li><a class="nav-link" href="#layout"><span class="header-section-number">8.2</span> Layout</a></li>
+</ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+          
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>The documentation of scRNAtoolVis package</strong>" was written by Junjun Lao. It was last built on 2022-10-08.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
